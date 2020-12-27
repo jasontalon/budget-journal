@@ -57,7 +57,6 @@ export default {
       start_url: 'https://budget-journal.vercel.app',
       name: 'My Budget Journal',
       short_name: 'My Budget',
-      useWebmanifestExtension: false,
       theme_color: '#fff',
       useWebmanifestExtension: true,
     },
