@@ -48,7 +48,7 @@ export default {
   build: {},
   pwa: {
     workbox: {
-      enabled: true,
+      enabled: false,
       workboxURL:
         'https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js',
     },
