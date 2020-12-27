@@ -57,6 +57,7 @@ export default {
       name: 'My Budget Journal',
       short_name: 'My Budget',
       useWebmanifestExtension: false,
+      theme_color : "#fff"
     },
   },
 }
