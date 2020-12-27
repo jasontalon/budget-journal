@@ -59,6 +59,7 @@ export default {
       short_name: 'My Budget',
       useWebmanifestExtension: false,
       theme_color: '#fff',
+      useWebmanifestExtension: true,
     },
   },
 }
