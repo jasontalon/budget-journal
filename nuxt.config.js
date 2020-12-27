@@ -18,10 +18,10 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/beforeinstallprompt.client.js',
     '~/plugins/identifier.client.js',
     '~/plugins/firebase.client.js',
     '~/plugins/shortid.client.js',
-    '~/plugins/beforeinstallprompt.client.js',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
