@@ -49,6 +49,8 @@ export default {
   pwa: {
     workbox: {
       enabled: true,
+      workboxURL:
+        'https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js',
     },
     meta: {
       mobileApp: true,
