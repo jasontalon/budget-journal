@@ -54,10 +54,11 @@ export default {
       mobileApp: true,
     },
     manifest: {
+      start_url: 'https://budget-journal.vercel.app',
       name: 'My Budget Journal',
       short_name: 'My Budget',
       useWebmanifestExtension: false,
-      theme_color : "#fff"
+      theme_color: '#fff',
     },
   },
 }
