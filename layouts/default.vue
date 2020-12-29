@@ -1,6 +1,6 @@
 <template>
-  <div class="relative">
-    <div class="mb-12">
+  <div class="relative bg-gray-200 h-screen">
+    <div class="pb-12">
       <Nuxt />
     </div>
     <div class="fixed inset-x-0 bottom-0">
@@ -10,9 +10,10 @@
 </template>
 
 <script>
+import HeaderBar from '~/components/HeaderBar.vue'
 import Navigation from '~/components/Navigation.vue'
 export default {
-  components: { Navigation },
+  components: { Navigation, HeaderBar },
 }
 </script>
 

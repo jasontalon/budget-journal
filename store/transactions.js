@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import 'dayjs/plugin/utc'
-const EXPENSES_KEY = '__EXPENSES'
 
+const EXPENSES_KEY = ''
 export const state = () => ({
   expenses: localStorage.getItem(EXPENSES_KEY) ?? [],
 })
