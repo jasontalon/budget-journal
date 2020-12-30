@@ -52,8 +52,8 @@ export default {
         name: this.name,
       }
 
-      this.$store.commit('budgets/add', budget)
-      this.$router.push({ path: '/' })
+      this.$store.commit('budget/add', budget)
+      this.$router.push({ path: '/budgets' })
     },
   },
 }
