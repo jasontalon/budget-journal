@@ -3,6 +3,15 @@
     <header-bar>Transactions</header-bar>
     <div>
       <div>Transactions</div>
+      <div class="flex flex-row mx-2 justify-center bg-white rounded-md p-2">
+        <div class="flex-grow-0 h-4 w-4 self-center"><search-icon /></div>
+        <input
+          placeholder="Search here..."
+          class="outline-none appearance-none flex-grow pl-2"
+          type="text"
+          v-model="searchTerm"
+        />
+      </div>
       <div class="flex flex-col space-y-2">
         <div v-for="date in this.dates" :key="date">
           <div class="mx-2">
@@ -65,12 +74,12 @@
 </template>
 
 <script>
-import AddButton from '~/components/AddButton.vue'
-import HeaderBar from '~/components/HeaderBar.vue'
 import dayjs from 'dayjs'
-import TransactionItemIcon from '~/components/icons/TransactionItemIcon.vue'
+
 export default {
-  components: { HeaderBar, AddButton, TransactionItemIcon },
+  data() {
+    return { searchTerm: '' }
+  },
   computed: {
     dates: function () {
       const dates = this.$store.state.transactions.transactions.map(
@@ -84,13 +93,21 @@ export default {
       return dayjs(val).format('MMMM D, YYYY')
     },
   },
-  mounted() {},
 
   methods: {
     transactionsByDate: function (date) {
-      return this.$store.state.transactions.transactions.filter(
-        (p) => p.date === date
-      )
+      if (this.searchTerm === '')
+        return this.$store.state.transactions.transactions.filter(
+          (p) => p.date === date
+        )
+      else {
+        return this.$store.state.transactions.transactions.filter(
+          (p) =>
+            p.date === date &&
+            (p.payee.toLowerCase().includes(this.searchTerm) ||
+              p.category.toLowerCase().includes(this.searchTerm))
+        )
+      }
     },
 
     update(transactionId) {
