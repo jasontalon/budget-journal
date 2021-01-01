@@ -34,7 +34,7 @@ export default {
       (p) => p.id === this.$route.params.id
     )
 
-    this.budget = forUpdate
+    this.budget = { ...forUpdate, amount: +forUpdate.amount }
   },
   methods: {
     remove() {
@@ -42,7 +42,7 @@ export default {
       this.$router.push({ path: '/budgets' })
     },
     save() {
-      console.log(this.budget);
+      console.log(this.budget)
       this.$store.commit('budget/update', this.budget)
       this.$router.push({ path: '/budgets' })
     },

@@ -5,7 +5,7 @@
     </div>
     <div>
       <select
-        v-model="value"
+        :value="value"
         class="appearance-none w-full rounded-md h-12 px-2"
         @change="(e) => this.$emit('update:value', e.target.value)"
       >

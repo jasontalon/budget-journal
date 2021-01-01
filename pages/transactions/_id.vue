@@ -1,10 +1,17 @@
 <template>
   <div>
-    <header-bar :canGoBack="true" :canSave="true" @save="save()"
+    <header-bar
+      :canGoBack="true"
+      :canSave="
+        transaction.date !== '' &&
+        transaction.budget !== '' &&
+        transaction.transactionType !== ''
+      "
+      @save="save()"
       >Edit Transaction</header-bar
     >
     <div class="m-4 space-y-2">
-      <input-field :value.sync="transaction.date">Date</input-field>
+      <date-field :value.sync="transaction.date">Date</date-field>
       <select-field
         :value.sync="transaction.transactionType"
         :items="['Expense', 'Income']"
@@ -15,7 +22,7 @@
         :items="this.$store.state.budget.budgets.map((p) => p.name)"
         >Budget</select-field
       >
-      <input-field :value.sync="transaction.amount">Amount</input-field>
+      <amount-field :value.sync="transaction.amount">Amount</amount-field>
       <input-field :value.sync="transaction.payee">Payee</input-field>
       <input-field :value.sync="transaction.category">Category</input-field>
       <button
@@ -29,7 +36,9 @@
 </template>
 
 <script>
+import AmountField from '~/components/AmountField.vue'
 export default {
+  components: { AmountField },
   validate({ params, store }) {
     const found = !!store.state.transactions.transactions.find(
       (p) => p.id === params.id
@@ -54,9 +63,20 @@ export default {
       (p) => p.id === this.$route.params.id
     )
 
-    this.transaction = forUpdate
+    this.transaction = {
+      ...forUpdate,
+      amount: +forUpdate.amount,
+      budget: this.budgetName(forUpdate.budget),
+    }
+    console.log(this.transaction)
   },
   methods: {
+    budgetName(budgetId) {
+      return (
+        this.$store.state.budget.budgets.find((p) => p.id === budgetId)?.name ??
+        ''
+      )
+    },
     remove() {
       this.$store.commit('transactions/remove', this.transaction.id)
       this.$router.push({ path: '/transactions' })
@@ -65,7 +85,6 @@ export default {
       const _budget = this.$store.state.budget.budgets.find(
         (p) => p.name === this.transaction.budget
       )
-
       this.$store.commit('transactions/update', {
         ...this.transaction,
         budget: _budget.id,

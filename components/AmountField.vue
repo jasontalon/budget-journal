@@ -6,7 +6,7 @@
     <div>
       <input
         type="number"
-        v-model="value"
+        :value="value"
         class="w-full rounded h-10 px-2"
         @change="(e) => this.$emit('update:value', e.target.value)"
         @keypress="(e) => this.$emit('update:value', e.target.value)"

@@ -6,7 +6,7 @@
     <div>
       <input
         :value="value"
-        type="text"
+        type="date"
         class="w-full rounded h-10 px-2"
         @change="(e) => this.$emit('update:value', e.target.value)"
         @keypress="(e) => this.$emit('update:value', e.target.value)"
@@ -22,6 +22,6 @@ export default {
       type: String,
       required: false,
     },
-  }
+  },
 }
 </script>
