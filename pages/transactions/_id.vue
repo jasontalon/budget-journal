@@ -49,11 +49,6 @@ export default {
       },
     }
   },
-  watch: {
-    'transaction.transactionType'(newValue, oldValue) {
-      console.log(newValue, oldValue)
-    },
-  },
   mounted() {
     const forUpdate = this.$store.state.transactions.transactions.find(
       (p) => p.id === this.$route.params.id
@@ -67,7 +62,14 @@ export default {
       this.$router.push({ path: '/transactions' })
     },
     save() {
-      this.$store.commit('transactions/update', this.transaction)
+      const _budget = this.$store.state.budget.budgets.find(
+        (p) => p.name === this.transaction.budget
+      )
+
+      this.$store.commit('transactions/update', {
+        ...this.transaction,
+        budget: _budget.id,
+      })
 
       this.$router.push({ path: '/transactions' })
     },

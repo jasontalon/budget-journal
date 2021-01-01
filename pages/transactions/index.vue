@@ -47,7 +47,7 @@
                           {{ transaction.amount }}
                         </div>
                         <div class="text-gray-800 text-xs uppercase">
-                          {{ transaction.budget }}
+                          {{ budgetName(transaction.budget) }}
                         </div>
                       </div>
                     </div>
@@ -84,9 +84,7 @@ export default {
       return dayjs(val).format('MMMM D, YYYY')
     },
   },
-  mounted() {
-    console.log(this.$store.state.transactions.transactions)
-  },
+  mounted() {},
 
   methods: {
     transactionsByDate: function (date) {
@@ -99,6 +97,13 @@ export default {
       this.$router.push({
         path: '/transactions/' + transactionId,
       })
+    },
+
+    budgetName(budgetId) {
+      return (
+        this.$store.state.budget.budgets.find((p) => p.id === budgetId)?.name ??
+        ''
+      )
     },
   },
 }

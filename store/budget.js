@@ -5,7 +5,7 @@ const BUDGETS_KEY = '__BUDGETS'
 
 export const state = () => {
   let budgets
-  
+
   if (!!localStorage.getItem(BUDGETS_KEY)) {
     budgets = JSON.parse(localStorage.getItem(BUDGETS_KEY))
   } else {
@@ -31,10 +31,9 @@ export const mutations = {
     const updatedBudgets = state.budgets.filter((p) => p.id !== id)
     state.budgets = updatedBudgets
     localStorage.setItem(BUDGETS_KEY, JSON.stringify(updatedBudgets))
-
   },
   update(state, { id, name, category, amount, year, month }) {
-    const updatedBudgets = state.budgets.map((p) => {
+    const updatedBudgets = state.budgets.map((p) =>
       p.id === id
         ? {
             ...p,
@@ -46,7 +45,7 @@ export const mutations = {
             updatedAt: dayjs().utc(),
           }
         : p
-    })
+    )
     state.budgets = updatedBudgets
     localStorage.setItem(BUDGETS_KEY, JSON.stringify(updatedBudgets))
   },

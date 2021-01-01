@@ -37,21 +37,16 @@ export default {
     }
   },
   methods: {
-    test(e) {
-      console.log(e.target.value)
-    },
     save() {
       const _budget = this.$store.state.budget.budgets.find(
         (p) => p.name === this.budget
       )
 
-      console.log(this.budget)
       this.$store.commit('transactions/add', {
         id: this.$shortid(),
         budget: _budget?.id ?? '',
         date: this.date,
         transactionType: this.transactionType,
-        budget: this.budget,
         amount: this.amount,
         payee: this.payee,
         category: this.category,
@@ -62,5 +57,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

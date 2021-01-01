@@ -27,7 +27,10 @@
             </svg>
           </div>
         </div>
-        <div class="bg-green-200 py-4 px-2 rounded-md">
+        <div
+          class="bg-green-200 py-4 px-2 rounded-md"
+          @click="() => $router.push({ path: '/budgets/' + budget.id })"
+        >
           <div class="flex flex-row justify-between">
             <div class="w-full text-left">
               <div>0</div>
